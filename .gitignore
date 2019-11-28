@@ -1,0 +1,14 @@
+### Python ###
+__pycache__/
+*.py[cod]
+*$py.class
+.python-version
+
+### macOS ###
+.DS_Store
+
+datasets/
+airflow.db
+airflow/logs/
+airflow/airflow-webserver.pid
+
