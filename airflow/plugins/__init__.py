@@ -12,5 +12,6 @@ class ETLPlugin(AirflowPlugin):
     operators = [
         operators.StageToRedshiftOperator,
         operators.LoadTableOperator,
+        operators.DataQualityOperator,
     ]
-    helpers = [helpers.SqlQueries]
+    helpers = [helpers.SqlQueries, helpers.DataValidationQueries]

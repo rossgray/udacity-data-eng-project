@@ -119,11 +119,13 @@ class SqlQueries:
 
     insert_github_repo_popularity = """
         SELECT
-            gr.id,
+            gr.id AS github_repo_id,
             gr.stars,
             gr.forks,
-            hn
+            sum(hnp.points) as total_hn_points,
+            sum(hnp.num_comments) as total_hn_comments
         FROM github_repos gr
-        JOIN hacker_news_posts hn
-        ON hn.
+        JOIN hacker_news_posts hnp
+        ON hnp.github_repo_full_name = gr.full_name
+        GROUP BY gr.id
     """
