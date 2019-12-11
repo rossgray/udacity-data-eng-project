@@ -13,7 +13,11 @@ class StageToRedshiftOperator(BaseOperator):
         FROM '{}'
         ACCESS_KEY_ID '{}'
         SECRET_ACCESS_KEY '{}'
-        REGION '{}';
+        REGION '{}'
+        CSV
+        IGNOREHEADER 1
+        TIMEFORMAT 'auto'
+        ;
     """
 
     @apply_defaults

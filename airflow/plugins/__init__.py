@@ -9,5 +9,8 @@ import helpers
 
 class ETLPlugin(AirflowPlugin):
     name = "etl_plugin"
-    operators = [operators.StageToRedshiftOperator]
+    operators = [
+        operators.StageToRedshiftOperator,
+        operators.LoadTableOperator,
+    ]
     helpers = [helpers.SqlQueries]
