@@ -20,7 +20,7 @@ default_args = {
 }
 
 dag = DAG(
-    'github_repo_popularity_etl_v2',
+    'github_repo_popularity_etl_v4',
     default_args=default_args,
     description='Full ETL pipeline combining GitHub and Hacker News data',
     schedule_interval=timedelta(days=1),
@@ -35,7 +35,7 @@ stage_gh_repos_to_redshift = StageToRedshiftOperator(
     dag=dag,
     table='staging_github_repos',
     create_table_sql=SqlQueries.create_staging_github_repos,
-    s3_key='github_sample.csv',
+    s3_key='github-repositories.csv',
 )
 
 stage_hn_posts_to_redshift = StageToRedshiftOperator(
@@ -43,7 +43,7 @@ stage_hn_posts_to_redshift = StageToRedshiftOperator(
     dag=dag,
     table='staging_hacker_news_posts',
     create_table_sql=SqlQueries.create_staging_hacker_news_posts,
-    s3_key='hn_sample.csv',
+    s3_key='hn.csv',
 )
 
 load_github_repos_table = LoadTableOperator(
