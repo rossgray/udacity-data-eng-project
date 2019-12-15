@@ -1,6 +1,29 @@
 Udacity Data Engineering Capstone Project
 =========================================
 
+Project description
+-------------------
+
+The aim for this project is to pull in data from 2 different data sources:
+
+1. List of GitHub repositories created between 29 Oct 2007 and 12 Nov 2010 - [https://www.kaggle.com/qopuir/github-repositories](https://www.kaggle.com/qopuir/github-repositories)
+2. Hacker News posts (all posts since 2006) - [https://www.kaggle.com/santiagobasulto/all-hacker-news-posts-stories-askshow-hn-polls](https://www.kaggle.com/santiagobasulto/all-hacker-news-posts-stories-askshow-hn-polls)
+
+This data will then be prepared for analysis to answer questions such as:
+- Which Github repos are the most popular according to Hacker News activity?
+- Which Github users are generating the most activity on Hacker News?
+- Which languages are most popular?
+
+### Data assessment
+
+- The GitHub repo data is just for repos created between certain dates so I decided to limit the date range for which we pull in Hacker News data. There may be some established projects which are still receiving a lot of activity many years after they were created but for efficiency I decided to to limit the Hacker News posts to all posts before 2014.
+- The `language` and `license` columns for Github repos data are sometimes empty
+- To analyse Hacker News activity related to GitHub repos we need to filter rows for which the `URL` contains a GitHub URL (sometimes this `URL` is empty). This is done when loading data from the staging table into the `hacker_news_posts` dimension table using a regular expression.
+
+### Data model
+
+
+
 Development
 -----------
 

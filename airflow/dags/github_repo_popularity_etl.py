@@ -13,14 +13,14 @@ from helpers import SqlQueries, DataValidationQueries
 default_args = {
     'owner': 'rossgray',
     'start_date': datetime(2019, 11, 20),
-    # 'depends_on_past': False,
+    'depends_on_past': False,
     'retries': 3,
     'retry_delay': timedelta(minutes=5),
     'email_on_retry': False,
 }
 
 dag = DAG(
-    'github_repo_popularity_etl_v5',
+    'github_repo_popularity_etl_v2',
     default_args=default_args,
     description='Full ETL pipeline combining GitHub and Hacker News data',
     schedule_interval=timedelta(days=1),

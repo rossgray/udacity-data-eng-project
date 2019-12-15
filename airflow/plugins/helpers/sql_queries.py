@@ -101,7 +101,10 @@ class SqlQueries:
             author,
             created_at,
             url,
-            REGEXP_SUBSTR(url, 'github.com/([_a-zA-Z0-9\-]+/[_a-zA-Z0-9\-]+)', 0, 1, 'e') AS github_repo_full_name,
+            REGEXP_SUBSTR(
+                url,
+                'github.com/([_a-zA-Z0-9\-]+/[_a-zA-Z0-9\-]+)', 0, 1, 'e'
+            ) AS github_repo_full_name,
             points,
             num_comments::integer
         FROM staging_hacker_news_posts
@@ -120,8 +123,8 @@ class SqlQueries:
     insert_github_repo_popularity = """
         SELECT
             gr.id AS github_repo_id,
-            gr.stars,
-            gr.forks,
+            max(gr.stars),
+            max(gr.forks),
             sum(hnp.points) as total_hn_points,
             sum(hnp.num_comments) as total_hn_comments
         FROM github_repos gr

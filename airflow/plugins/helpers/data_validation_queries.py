@@ -49,7 +49,7 @@ class DataValidationQueries:
         SELECT count(*)
         FROM github_users
         WHERE name is NULL
-            OR name is ''
+            OR name = ''
     """
 
     hn_posts_ref_github_exist = """
