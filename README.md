@@ -19,8 +19,8 @@ This data will then be prepared for analysis to answer questions such as:
 - The GitHub repo data is just for repos created between certain dates so I decided to limit the date range for which we pull in Hacker News data. There may be some established projects which are still receiving a lot of activity many years after they were created but for efficiency I decided to to limit the Hacker News posts to all posts before 2014.
 - The `language`, `license`, `size`, `stars`, `forks`, `open_issues` and `created_at` columns for Github repos data are sometimes empty
 - The `num_comments` column for Hacker News posts can sometimes be empty
-- To analyse Hacker News activity related to GitHub repos we need to filter rows for which the `URL` contains a GitHub URL (sometimes this `URL` is empty). This is done when loading data from the staging table into the `hacker_news_posts` dimension table using a regular expression.
 - Some of the Hacker News URLs are very long, hence the maximum field length for this column has been set to 8192.
+- To analyse Hacker News activity related to GitHub repos we need to filter rows for which the `URL` contains a GitHub URL (sometimes this `URL` is empty). This is done when loading data from the staging table into the `hacker_news_posts` dimension table using a regular expression.
 
 ### Data model
 
