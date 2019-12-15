@@ -22,7 +22,7 @@ This data will then be prepared for analysis to answer questions such as:
 
 ### Data model
 
-
+![Data model](ERDiagram.png)
 
 Development
 -----------
