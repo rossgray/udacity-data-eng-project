@@ -25,7 +25,7 @@ class SqlQueries:
             post_type varchar(128),
             author varchar(256),
             created_at timestamp,
-            url varchar(1024),
+            url varchar(8192),
             points int,
             num_comments real
         );
@@ -86,7 +86,7 @@ class SqlQueries:
             post_type varchar(128),
             author varchar(256),
             created_at timestamp,
-            url varchar(1024),
+            url varchar(8192),
             github_repo_full_name varchar(256),
             points int,
             num_comments int

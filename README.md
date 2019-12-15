@@ -17,12 +17,37 @@ This data will then be prepared for analysis to answer questions such as:
 ### Data assessment
 
 - The GitHub repo data is just for repos created between certain dates so I decided to limit the date range for which we pull in Hacker News data. There may be some established projects which are still receiving a lot of activity many years after they were created but for efficiency I decided to to limit the Hacker News posts to all posts before 2014.
-- The `language` and `license` columns for Github repos data are sometimes empty
+- The `language`, `license`, `size`, `stars`, `forks`, `open_issues` and `created_at` columns for Github repos data are sometimes empty
+- The `num_comments` column for Hacker News posts can sometimes be empty
 - To analyse Hacker News activity related to GitHub repos we need to filter rows for which the `URL` contains a GitHub URL (sometimes this `URL` is empty). This is done when loading data from the staging table into the `hacker_news_posts` dimension table using a regular expression.
+- Some of the Hacker News URLs are very long, hence the maximum field length for this column has been set to 8192.
 
 ### Data model
 
 ![Data model](ERDiagram.png)
+
+The above Entity-Relationship Diagram shows the data model used. The two staging tables are on the left and represent the data from the source CSV files with some data types applied to them. The tables on the right represent the dimension tables and the fact table (`github_repo_popularity`). The fact table contains metrics of popularity for GitHub repositories and is designed to help answer the questions posed above.
+
+### ETL pipeline
+
+The ETL (extract-transform-load) pipeline is ran via an Airflow DAG:
+
+![DAG](DAG.png)
+
+The DAG is comprised of a few main stages:
+1. We first pull in the data from the two CSV files into two staging tables; one for the GitHub repo data and one for the Hacker News posts.
+2. Data is then loaded into the three dimension tables; GitHub repos, GitHub users, and Hacker News posts
+3. Data quality checks are then performed on the data to ensure we have data in these tables and that we don't have any values that we're not expecting.
+4. The fact table, `github_repo_popularity`, is then built by joining data from two of the dimension tables.
+5. A final data validation check is performed on the fact table to ensure we have data.
+
+
+## Improvements that could be made / next steps
+
+At the moment this data is just a couple of standalone CSV files. We could pull in this data using the GitHub and Hacker News APIs instead so that we get up-to-date data. Using Airflow schedules we could also pull in a subset of data for the time range given by the schedule.
+
+
+
 
 Development
 -----------

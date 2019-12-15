@@ -33,18 +33,6 @@ class DataValidationQueries:
             OR full_name = ''
     """
 
-    github_repos_stars_null = """
-        SELECT count(*)
-        FROM github_repos
-        WHERE stars is NULL
-    """
-
-    github_repos_forks_null = """
-        SELECT count(*)
-        FROM github_repos
-        WHERE forks is NULL
-    """
-
     github_users_name_null = """
         SELECT count(*)
         FROM github_users
@@ -63,10 +51,4 @@ class DataValidationQueries:
         SELECT count(*)
         FROM hacker_news_posts
         WHERE points is NULL
-    """
-
-    hn_posts_num_comments_null = """
-        SELECT count(*)
-        FROM hacker_news_posts
-        WHERE num_comments is NULL
     """

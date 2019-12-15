@@ -20,7 +20,7 @@ default_args = {
 }
 
 dag = DAG(
-    'github_repo_popularity_etl_v4',
+    'github_repo_popularity_etl_v7',
     default_args=default_args,
     description='Full ETL pipeline combining GitHub and Hacker News data',
     schedule_interval=timedelta(days=1),
@@ -85,8 +85,6 @@ data_validation_github_repos = DataQualityOperator(
         (DataValidationQueries.data_in_github_repos_table, True),
         (DataValidationQueries.github_repos_owner_null, 0),
         (DataValidationQueries.github_repos_name_null, 0),
-        (DataValidationQueries.github_repos_stars_null, 0),
-        (DataValidationQueries.github_repos_forks_null, 0),
     ],
 )
 
@@ -106,7 +104,6 @@ data_validation_hn_posts = DataQualityOperator(
         (DataValidationQueries.data_in_hacker_news_posts_table, True),
         (DataValidationQueries.hn_posts_ref_github_exist, True),
         (DataValidationQueries.hn_posts_points_null, 0),
-        (DataValidationQueries.hn_posts_num_comments_null, 0),
     ],
 )
 
