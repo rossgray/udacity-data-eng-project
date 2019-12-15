@@ -26,7 +26,7 @@ This data will then be prepared for analysis to answer questions such as:
 
 ![Data model](ERDiagram.png)
 
-The above Entity-Relationship Diagram shows the data model used. The two staging tables are on the left and represent the data from the source CSV files with some data types applied to them. The tables on the right represent the dimension tables and the fact table (`github_repo_popularity`). The fact table contains metrics of popularity for GitHub repositories and is designed to help answer the questions posed above.
+The above Entity-Relationship Diagram shows the data model used. The two staging tables are on the left and represent the data from the source CSV files with data typing applied. The tables on the right represent the dimension tables and the fact table (`github_repo_popularity`). The fact table contains metrics of popularity for GitHub repositories and is designed to help answer the questions posed above.
 
 ### ETL pipeline
 
