@@ -20,7 +20,7 @@ default_args = {
 }
 
 dag = DAG(
-    'github_repo_popularity_etl_v7',
+    'github_repo_popularity_etl_v1',
     default_args=default_args,
     description='Full ETL pipeline combining GitHub and Hacker News data',
     schedule_interval=timedelta(days=1),
